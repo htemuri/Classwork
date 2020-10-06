@@ -1,0 +1,361 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{textgreek}
+\usepackage{multirow,array}
+\usepackage{nicefrac}
+\usepackage{mathtools}% http://ctan.org/pkg/mathtools
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  language=R,                     % the language of the code
+  basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+  numbers=left,                   % where to put the line-numbers
+  numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+  stepnumber=1,                   % the step between two line-numbers. If it's 1, each line
+                                  % will be numbered
+  numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  frame=single,                   % adds a frame around the code
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+  tabsize=2,                      % sets default tabsize to 2 spaces
+  captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  title=\lstname,                 % show the filename of files included with \lstinputlisting;
+                                  % also try caption instead of title
+  keywordstyle=\color{blue},      % keyword style
+  commentstyle=\color{dkgreen},   % comment style
+  stringstyle=\color{mauve},      % string literal style
+  escapeinside={\%*}{*)},         % if you want to add a comment within your code
+  morekeywords={*,...}            % if you want to add more keywords to the set
+}
+
+
+\usetikzlibrary{automata,positioning}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\ (\hmwkClassInstructor): \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Homework Details
+%   - Title
+%   - Due date
+%   - Class
+%   - Section/Time
+%   - Instructor
+%   - Author
+%
+
+\newcommand{\hmwkTitle}{Homework 3}
+\newcommand{\hmwkDueDate}{10/07}
+\newcommand{\hmwkClassTime}{}
+\newcommand{\hmwkClass}{AMS 316.01}
+\newcommand{\hmwkClassInstructor}{Haipeng Xing}
+\newcommand{\hmwkAuthorName}{Harris Temuri}
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+    \vspace{0.1in}\large{\textit{\hmwkClassInstructor\ \hmwkClassTime}}
+    \vspace{3in}
+}
+
+\author{\hmwkAuthorName}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+
+% Alias for the Solution section header
+\newcommand{\solution}{\textbf{\large Solution}}
+
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+In the following equations, ${Z_t}$ is a discrete-time, purely random process such that $E(Z_t) = 0, Var(Z_t) = σ^2_Z$, 
+and successive values of $Z_t$ are independent so that $Cov(Z_t, Z_{t+k}) = 0, k\neq0$.
+
+\begin{homeworkProblem}
+
+    Show that the ac.f of the second-order MA process
+    
+    \[
+        X_t = Z_t + 0.7Z_{t-1} - 0.2Z_{t-2}
+    \]
+    
+    is given by
+    
+    \[  p(k) = 
+        \begin{cases} 
+          1, & k = 0 \\
+          0.37, & k = \pm 1 \\
+          -0.13, & k = \pm 2\\
+          0, & otherwise
+        \end{cases}
+    \]
+    
+    \textbf{\large{Solution}}\\\\
+    \\\\
+    
+    \begin{gather*}
+        p(k) = 
+        \begin{cases} 
+          1, & k = 0 \\
+          \nicefrac{\sum_{i=0}^{q-k} \beta_i\beta_{i+k}}{\sum_{i=0}^{q} \beta_i^2}, & k = 1,...,q \\
+          0, & k \geq q
+        \end{cases}
+    \end{gather*}
+    for k=1,
+    \begin{align*}
+        &= \sum_{i=0}^{q-1} \beta_i\beta_{i+k}
+        \\&= (1*0.7) + (0.7*(-.2))
+        \\&= 0.56
+    \end{align*}
+    \begin{align*}
+        &= \sum_{i=0}^{q} \beta_i^2
+        \\&= 1^2 + 0.7^2 + (-0.2)^2
+        \\&= 1.53
+    \end{align*}
+    \begin{align*}
+        &= \nicefrac{\sum_{i=0}^{q-1} \beta_i\beta_{i+k}}{\sum_{i=0}^{q} \beta_i^2}
+        \\&= \nicefrac{0.56}{1.53}
+        \\&= 0.366 \cong \textbf{0.37}
+    \end{align*}
+    \newpage
+    for k=2,
+    \begin{align*}
+        &= \sum_{i=0}^{q-2} \beta_i\beta_{i+k}
+        \\&= (1*(-0.2))
+        \\&= -0.2
+    \end{align*}
+    \begin{align*}
+        &= \nicefrac{\sum_{i=0}^{q-2} \beta_i\beta_{i+k}}{\sum_{i=0}^{q} \beta_i^2}
+        \\&= \nicefrac{-0.2}{1.53}
+        \\&= -0.1307 \cong \textbf{-0.13}
+    \end{align*}
+    
+    \[  p(k) = 
+        \begin{cases} 
+          1, & k = 0 \\
+          0.37, & k = \pm 1 \\
+          -0.13, & k = \pm 2\\
+          0, & otherwise
+        \end{cases}
+    \]
+    
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    Consider the MA($m$) process, with equal weights $\frac{1}{m+1}$ at all lags (so it is a real moving average), given by,
+    \[
+        X_t = \sum_{k=0}^{m} \frac{Z_{t-k}}{m+1}
+    \]
+    Show that the ac.f of this process is
+    \[
+        p(k) = 
+        \begin{cases} 
+          \frac{m+1-k}{m+1}, & k = 0,...,m \\
+          0, & k \geq m
+        \end{cases}
+    \]
+    \textbf{\large{Solution}}\\\\
+        \begin{gather*}
+        p(k) = 
+        \begin{cases} 
+          1, & k = 0 \\
+          \nicefrac{\sum_{i=0}^{q-k} \beta_i\beta_{i+k}}{\sum_{i=0}^{q} \beta_i^2}, & k = 1,...,m \\
+          0, & k \geq q
+        \end{cases}
+    \end{gather*}
+    for $k=0,...,m$,
+    % sum of bi and b(i+k)
+    \begin{align*}
+        &= \sum_{i=0}^{m} \beta_i\beta_{i+k}
+        \\&= \frac{m+1-k}{(m+1)^2}
+    \end{align*}
+    \begin{align*}
+        &= \sum_{i=0}^{m} \beta_i^2
+        \\&= \frac{1}{m+1}
+    \end{align*}
+    \begin{align*}
+        &= \nicefrac{\sum_{i=0}^{q-1} \beta_i\beta_{i+k}}{\sum_{i=0}^{q} \beta_i^2}
+        \\&= \frac{m+1-k}{m+1}
+    \end{align*}
+    \newpage
+
+    \[  p(k) = 
+        \begin{cases} 
+          1, & k = 0 \\
+          \frac{m+1-k}{m+1}, & k = 1,...,m \\
+          0, & otherwise
+        \end{cases}
+    \]
+    
+\end{homeworkProblem}
+\begin{homeworkProblem}
+    Consider the infinite-order MA process $X_t$, defined by
+    \[
+        X_t = Z_t + C(Z_{t-1}+Z_{t-2}+...)
+    \]
+    where $C$ is a constant. Show that the process is non-stationary. Also show that the series of the first differences $Y_t$ defined by
+    \[
+        Y_t = X_t - X_{t-1}
+    \]
+    is a first-order MA process and is stationary. Find the ac.f of $Y_t$.\\
+    
+    \textbf{\large{Solution}}\\\\
+    $X_t$ is not stationary because its variance changes with time. $Y_t$ is stationary because it forms a purely random process, which is stationary.
+    
+    \begin{gather*}
+        X_t = Z_t + C(Z_{t-1} + Z_{t-2} + ...)
+        Y_t = X_t - X_{t-1}
+    \end{gather*}
+    
+    \begin{align*}
+        Y_t &= Z_t + C(Z_{t-1} + Z_{t-2} + ...) - (Z_{t-1} + C(Z_{t-2} + Z_{t-3} + ...))
+        \\&= Z_t + CZ_{t-1} - Z_{t-1}
+        \\&= Z_t + (C-1)Z_{t-1}
+    \end{align*}
+    
+    \begin{gather*}
+        p(k) = 
+        \begin{cases} 
+          1, & k = 0 \\
+          \nicefrac{\sum_{i=0}^{q-k} \beta_i\beta_{i+k}}{\sum_{i=0}^{q} \beta_i^2}, & k = 1,...,q \\
+          0, & k \geq q
+        \end{cases}
+    \end{gather*}
+    
+    for $k=1$,
+    
+    \begin{align*}
+        &= \sum_{i=0}^{q-1} \beta_i\beta_{i+k}
+        \\&= C-1
+    \end{align*}
+    
+    \begin{align*}
+    &= \sum_{i=0}^{q} \beta_i^2
+    \\&= 1+(C-1)^2
+    \end{align*}
+    
+    \begin{align*}
+    &= \nicefrac{\sum_{i=0}^{q-1} \beta_i\beta_{i+k}}{\sum_{i=0}^{q} \beta_i^2}
+    \\&= \frac{C-1}{1+(C-1)^2}
+    \end{align*}
+    
+    
+    \[  p(k) = 
+        \begin{cases} 
+          1, & k = 0 \\
+          \frac{C-1}{1+(C-1)^2}, & k = \pm 1 \\
+          0, & otherwise
+        \end{cases}
+    \]
+\end{homeworkProblem}
+\end{document}
