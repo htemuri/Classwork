@@ -1,0 +1,353 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{textgreek}
+\usepackage{multirow,array}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  language=R,                     % the language of the code
+  basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+  numbers=left,                   % where to put the line-numbers
+  numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+  stepnumber=1,                   % the step between two line-numbers. If it's 1, each line
+                                  % will be numbered
+  numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  frame=single,                   % adds a frame around the code
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+  tabsize=2,                      % sets default tabsize to 2 spaces
+  captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  title=\lstname,                 % show the filename of files included with \lstinputlisting;
+                                  % also try caption instead of title
+  keywordstyle=\color{blue},      % keyword style
+  commentstyle=\color{dkgreen},   % comment style
+  stringstyle=\color{mauve},      % string literal style
+  escapeinside={\%*}{*)},         % if you want to add a comment within your code
+  morekeywords={*,...}            % if you want to add more keywords to the set
+}
+
+
+\usetikzlibrary{automata,positioning}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\ (\hmwkClassInstructor\ \hmwkClassTime): \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Homework Details
+%   - Title
+%   - Due date
+%   - Class
+%   - Section/Time
+%   - Instructor
+%   - Author
+%
+
+\newcommand{\hmwkTitle}{Homework 3}
+\newcommand{\hmwkDueDate}{10/09}
+\newcommand{\hmwkClassTime}{}
+\newcommand{\hmwkClass}{ECO 321.03}
+\newcommand{\hmwkClassInstructor}{Maria Perez-Urdiales}
+\newcommand{\hmwkAuthorName}{Harris Temuri}
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+    \vspace{0.1in}\large{\textit{\hmwkClassInstructor\ \hmwkClassTime}}
+    \vspace{3in}
+}
+
+\author{\hmwkAuthorName}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+
+% Alias for the Solution section header
+\newcommand{\solution}{\textbf{\large Solution}}
+
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+\begin{homeworkProblem}
+
+    Let us consider the following regression model for a sample of $n$ female workers
+    \begin{gather}
+    \text{\textbf{WorkHours}}_i = \beta_0 + \beta_1\text{\textbf{Child}}_i + u_i,
+     \text{    }i = 1,...,n,
+    \end{gather}
+
+    where ${Child}_i$ is a binary variable that takes value 1 if the individual has one or more
+    child and 0 otherwise; and $WorkHours$ is the individual’s usual hours worked per
+    week in past 12 months.
+    
+    \\Let \textbf{WeeklyPay} = $Y$ and \textbf{Child} = $X$. Also let $n_1$ the number of individuals who
+    has a one or more than one child and $n_0$ the number of female worker who does not
+    have a child, such that $n_0 + n_1 = n$.
+    
+    \\Recall that the OLS estimators are given by
+    
+    \begin{gather*}
+        \hat{\beta}_1 = \frac{\sum_{i=1}^n (y_i - \Bar{Y})(x_i - \Bar{X})}{\sum_{i=1}^n (x_i - \Bar{X})^2}
+        \\\hat{\beta}_0 = \Bar{Y} - \hat{\beta}_1\Bar{X}.
+    \end{gather*}
+
+    \begin{enumerate}[label=\alph*., start = 1]
+        \item   Let $y_{i,0}$ an individual $i$’s working hours for which the value of $X$ is 0; and $y_{i,1}$
+                an individual $i$’s working hour for which the value of $X$ is 1. Show that 
+                \begin{gather*}
+                    \sum_{i=1}^n (y_i - \Bar{Y})(x_i - \Bar{X}) = \frac{n_0}{n}\sum_{i=1}^{n_0} y_{i,1} -
+                    \frac{n_1}{n}\sum_{i=1}^{n_0} y_{i,0}
+                \end{gather*}
+                
+        \item   Show that
+                \begin{gather*}
+                    \sum_{i=1}^n (x_i - \Bar{X})^2 = \frac{n_1n_0}{n}
+                \end{gather*}
+
+        \item   Use the results in (\textit{a}) and (\textit{b}) to conclude that
+        \begin{gather*}
+            \hat{\beta}_1 = \Bar{Y}_1 - \Bar{Y}_0
+        \end{gather*}
+                upon an appropriate definition of $\Bar{Y}_1$ and $\Bar{Y}_0$.
+        \item   Show that $\Bar{Y} = (n_1/n)\Bar{Y}_1 + (n_0/n)\Bar{Y}_0$
+        \item   Using the result in (\textit{d}), finally show that $\hat{\beta}_0 = \Bar{Y}_0$\\
+    \end{enumerate}
+    
+    
+    \textbf{\large{Solution}}\\\\
+    \textbf{Part A}
+    \begin{gather*}
+        Y_i = \beta_0  + \beta_1X_i +u_i
+        \\y_{i,0} = \beta_0 + u_i
+        \\y_{i,1} = \beta_0 + \beta_1 + u_i
+        \\\beta_1 = E(Y_i|X_i=1) - E(Y_i|X_i=0)
+        \\\beta_1 = \frac{\sum_{i=1}^{n_1} y_{i,1}}{n_1} - \frac{\sum_{i=1}^{n_0} y_{i,0}}{n_0}
+        \\\frac{\sum_{i=1}^n (y_i - \Bar{Y})(x_i - \Bar{X})}{\sum_{i=1}^n (x_i - \Bar{X})^2}
+        = \frac{\sum_{i=1}^{n_1} y_{i,1}}{n_1} - \frac{\sum_{i=1}^{n_0} y_{i,0}}{n_0}
+        \\\frac{\sum_{i=1}^n (y_i - \Bar{Y})(x_i - \Bar{X})}{\frac{n_1n_0}{n}}
+        = \frac{\sum_{i=1}^{n_1} y_{i,1}}{n_1} - \frac{\sum_{i=1}^{n_0} y_{i,0}}{n_0}
+        \\\sum_{i=1}^n (y_i - \Bar{Y})(x_i - \Bar{X}) = \frac{n_0}{n}\sum_{i=1}^{n_0} y_{i,1} -
+        \frac{n_1}{n}\sum_{i=1}^{n_0} y_{i,0}
+    \end{gather*}
+    \textbf{Part B}\\
+    \begin{gather*}
+        \\\sum_{i=1}^n (y_i - \Bar{Y})(x_i - \Bar{X}) = \frac{n_0}{n}\sum_{i=1}^{n_0} y_{i,1} -
+        \frac{n_1}{n}\sum_{i=1}^{n_0} y_{i,0}
+        \\\sum_{i=1}^n (y_i - \Bar{Y})(x_i - \Bar{X}) = \frac{n_1n_0}{n}(\frac{\sum_{i=1}^{n_1} y_{i,1}}{n_1} - \frac{\sum_{i=1}^{n_0} y_{i,0}}{n_0})
+        \\\frac{\sum_{i=1}^n (y_i - \Bar{Y})(x_i - \Bar{X})}{\frac{n_1n_0}{n}}
+        =\frac{\sum_{i=1}^n (y_i - \Bar{Y})(x_i - \Bar{X})}{\sum_{i=1}^n (x_i - \Bar{X})^2}
+        \\\frac{n_1n_0}{n} = \sum_{i=1}^n (x_i - \Bar{X})^2
+    \end{gather*}
+    \textbf{Part C}\\
+    \begin{gather*}
+        \hat{\beta}_1 = \frac{\sum_{i=1}^{n_1} y_{i,1}}{n_1} - \frac{\sum_{i=1}^{n_0} y_{i,0}}{n_0}
+        \\\hat{\beta}_1 = \frac{n_1\Bar{Y}_1}{n_1} - \frac{n_0\Bar{Y}_0}{n_0}
+        \\\hat{\beta}_1 = \bar{Y}_1 - \Bar{Y}_0
+    \end{gather*}
+    \textbf{Part D}\\
+    \begin{gather*}
+        \bar{Y} = \frac{\sum_{i=0}^n y_{i}}{n}
+        \\\bar{Y} = \frac{\sum_{i=1}^{n_1} y_{i,1} + \sum_{i=1}^{n_0} y_{i,0}}{n}
+        \\\bar{Y} = \frac{n_1\bar{Y}_1 + n_0\bar{Y}_0}{n}
+        \\\Bar{Y} = (n_1/n)\Bar{Y}_1 + (n_0/n)\Bar{Y}_0
+    \end{gather*}
+    \textbf{Part E}\\
+    \begin{gather*}
+    \hat{\beta}_0 = \Bar{Y} - \hat{\beta}_1\Bar{X}
+    \\\hat{\beta}_0 = \Bar{Y}_0 - \hat{\beta}_1\Bar{X}
+    \\\hat{\beta}_0 = \Bar{Y}_0 - \hat{\beta}_1(0)
+    \\\hat{\beta}_0 = \Bar{Y}_0   
+    \end{gather*}
+
+\end{homeworkProblem}
+\newpage
+\begin{homeworkProblem}
+
+    The data file, \textbf{female work.csv}, is a subset of The American Community Survey(ACS) for the year 2018, with only female workers from age 18-40. A detailed description of the variables contained in the file is given in the pdf file \textbf{Documentation.pdf}
+    available on Blackboard. You can find a sample code for fitting and testing a linear
+    regression model in R inside the folders called ”Chapter 2: Linear Regression with
+    One Regressor” and ”Chapter 3: Inference in the Linear Model with One Regressor”
+    on Blackboard.
+    \begin{enumerate}[label=\alph*., start = 1]
+        \item   Suppose that all assumptions for OLS are satisfied and estimate the simple
+                regression model in equation (1) using heteroskedasticity robust standard errors.
+        \item   Report the values for $\hat{\beta}_0$ and $\hat{\beta}_1$.
+        \item   What does the sample statistic $\hat{\beta}_0$ capture?
+        \item   Do women with child work less? By how much? Explain.
+        \item   Is the estimated effect of having child on women's working hours statistically significant?
+                Carry out a test at the 1\% level.
+        \item   Construct a 95\% confidence interval for the effect of having children on working hours.\\
+    \end{enumerate}
+    
+    \textbf{\large{Solution}}\\\\
+    \textbf{Part A}\\
+    \begin{lstlisting}
+    model <- lm(workhour ~ child, data = FemaleWork)
+    coeftest(model, vcov = vcovHC(model, type = "HC1"))
+    # t test of coefficients:
+    #
+    #              Estimate Std. Error  t value  Pr(>|t|)    
+    # (Intercept) 36.250973   0.028318 1280.143 < 2.2e-16 ***
+    # child       (neg)1.009660   0.041918  -24.087 < 2.2e-16 ***
+    # ---
+    # Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+    \end{lstlisting}
+    \begin{gather*}
+    \text{\textbf{WorkHours}}_i = \beta_0 + \beta_1\text{\textbf{Child}}_i + u_i,
+    \\\text{\textbf{WorkHours}}_i = 36.25 - 1.01\text{\textbf{Child}}_i + u_i,
+    \end{gather*}
+    
+    \textbf{Part B}\\
+    The value for $\hat{\beta}_0$ is 36.25 with $SE(\hat{\beta}_0) = 0.028$. The value for $\hat{\beta}_1$ is -1.01 with $SE(\hat{\beta}_1) = 0.042$.\\
+    
+    \textbf{Part C}\\
+    It's an estimate on how many hours a female without a child works.\\
+    
+    \textbf{Part D}\\
+    Women with one or more children tend to work 1.01 fewer hours than women without children.\\
+    \newpage
+    \textbf{Part E}\\
+    \begin{lstlisting}
+    summary(model)
+    
+    # Call:
+    # lm(formula = workhour ~ child, data = FemaleWork)
+    #
+    # Residuals:
+    #     Min      1Q  Median      3Q     Max 
+    # -35.251  -6.251   3.749   4.759  63.759 
+    #
+    # Coefficients:
+    #             Estimate Std. Error t value Pr(>|t|)    
+    # (Intercept) 36.25097    0.02829 1281.50   <2e-16 ***
+    # child       -1.00966    0.04193  -24.08   <2e-16 ***
+    # ---
+    # Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+    #
+    # Residual standard error: 11.96 on 328397 degrees of freedom
+    # Multiple R-squared:  0.001763,	Adjusted R-squared:  0.00176 
+    # F-statistic: 579.9 on 1 and 328397 DF,  p-value: < 2.2e-16
+    \end{lstlisting}
+    The p-value for the linear model is much less than 0.01 so the model is statistically significant.\\
+    
+    \textbf{Part F}\\
+    \begin{lstlisting}
+    newdata <- data.frame(child=1)
+    predict(model, newdata = newdata, interval = "confidence")
+    #       fit      lwr      upr
+    #  35.24131 35.18066 35.30196
+    \end{lstlisting}
+    The 95\% confidence interval for the effect of having children on working hours is $[35.18066, 35.30196]$.
+    
+\end{homeworkProblem}
+
+\end{document}
