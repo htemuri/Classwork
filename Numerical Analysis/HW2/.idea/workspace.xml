@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6e09bfef-9176-4845-82f6-03abecf63657" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/HW2.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/ejml_v0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library/ejml-v0.40-libs/ejml-cdense-0.40-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library/ejml-v0.40-libs/ejml-cdense-0.40.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library/ejml-v0.40-libs/ejml-core-0.40-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library/ejml-v0.40-libs/ejml-core-0.40.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library/ejml-v0.40-libs/ejml-ddense-0.40-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library/ejml-v0.40-libs/ejml-ddense-0.40.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library/ejml-v0.40-libs/ejml-dsparse-0.40-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library/ejml-v0.40-libs/ejml-dsparse-0.40.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library/ejml-v0.40-libs/ejml-experimental-0.40-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library/ejml-v0.40-libs/ejml-experimental-0.40.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library/ejml-v0.40-libs/ejml-fdense-0.40-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library/ejml-v0.40-libs/ejml-fdense-0.40.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library/ejml-v0.40-libs/ejml-simple-0.40-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library/ejml-v0.40-libs/ejml-simple-0.40.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library/ejml-v0.40-libs/ejml-zdense-0.40-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library/ejml-v0.40-libs/ejml-zdense-0.40.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HW2/Problem2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Problem2.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="TaskManager">
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>

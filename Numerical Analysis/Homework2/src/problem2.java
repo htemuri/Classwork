@@ -1,10 +1,10 @@
 import java.util.Random;
 
-import org.ejml.*;
-import org.ejml.simple.SimpleMatrix;
-import org.ejml.simple.SimpleOperations;
+//import org.ejml.*;
+//import org.ejml.simple.SimpleMatrix;
+//import org.ejml.simple.SimpleOperations;
 
-public class Problem2 {
+public class problem2 {
     public static void main(String[] args) {
         Random rnd = new Random();
 //         2^9 x 2^9 matrices
@@ -13,18 +13,7 @@ public class Problem2 {
         float[][] resultMatrix = new float[(int) Math.pow(2, 12)][(int) Math.pow(2, 12)];
         //
         long start = System.currentTimeMillis();
-//        SimpleMatrix firstMatrix = SimpleMatrix.random_FDRM((int) Math.pow(2, 12), (int) Math.pow(2, 12), -2, 2, rnd);
-//        SimpleMatrix secondMatrix = SimpleMatrix.random_FDRM((int) Math.pow(2, 12), (int) Math.pow(2, 12), -2, 2, rnd);
 
-//        SimpleMatrix resultMatrix = new SimpleMatrix((int) Math.pow(2,9),(int) Math.pow(2,9));
-//        SimpleMatrix resultMatrix = firstMatrix.mult(secondMatrix);
-
-//        for (int i = 0; i < 10; i++) {
-//            for (int j = 0; j < 10; j++) {
-//                System.out.print(resultMatrix.get(i,j)+", ");
-//            }
-//            System.out.println();
-//        }
         for (int i = 0; i < m.length; i++) {
             for (int j = 0; j < m[i].length; j++) {
                 m[i][j] = (rnd.nextFloat() * 4) - 2;
@@ -35,22 +24,7 @@ public class Problem2 {
                 m2[i][j] = (rnd.nextFloat() * 4) - 2;
             }
         }
-//        System.out.println("m");
-//        for (int i = 0; i < m.length; i++) {
-//            for (int j = 0; j < m[i].length; j++) {
-//                System.out.print(m[i][j] + ", ");
-//            }
-//            System.out.println();
-//        }
-//        System.out.println("m2");
-//        for (int i = 0; i < m.length; i++) {
-//            for (int j = 0; j < m[i].length; j++) {
-//                System.out.print(m2[i][j] + ", ");
-//            }
-//            System.out.println();
-//        }
-
-
+        // naive method
         for (int i = 0; i < m.length; i++) {
             for (int j = 0; j < m[i].length; j++) {
                 for (int l = 0; l < m[i].length; l++) {
@@ -58,23 +32,24 @@ public class Problem2 {
                 }
             }
         }
-//
-//        System.out.println("result");
-//        for (int i = 0; i < m.length; i++) {
-//            for (int j = 0; j < m[i].length; j++) {
-//                System.out.print(resultMatrix[i][j] + ", ");
-//            }
-//            System.out.println();
-//        }
+
+
+
+        // Strassen method
+
+//        resultMatrix = multiply(m, m2);
+
+
+
 
         long elapsedTimeMillis = System.currentTimeMillis() - start;
         float elapsedTimeSec = elapsedTimeMillis / 1000F;
         float elapsedTimeMin = elapsedTimeMillis / (60 * 1000F);
-        System.out.println(elapsedTimeSec);
+        System.out.println(elapsedTimeSec +" seconds");
 
     }
 
-    public float[][] multiply(float[][] A, float[][] B) {
+    public static float[][] multiply(float[][] A, float[][] B) {
         // Order of matrix
         int n = A.length;
 
@@ -164,7 +139,7 @@ public class Problem2 {
         return R;
     }
 
-    public float[][] sub(float[][] A, float[][] B)
+    public static float[][] sub(float[][] A, float[][] B)
     {
         //
         float n = A.length;
@@ -191,7 +166,7 @@ public class Problem2 {
 
     // Method 3
     // Funtion to add two matrices
-    public float[][] add(float[][] A, float[][] B)
+    public static float[][] add(float[][] A, float[][] B)
     {
 
         //
@@ -220,7 +195,7 @@ public class Problem2 {
     // Method 4
     // Funtion to split parent matrix
     // into child matrices
-    public void split(float[][] P, float[][] C, float iB, float jB)
+    public static void split(float[][] P, float[][] C, float iB, float jB)
     {
         // Iterating over elements of 2D matrix
         // using nested for loops
@@ -238,7 +213,7 @@ public class Problem2 {
     // Method 5
     // Funtion to join child matrices
     // into (to) parent matrix
-    public void join(float[][] C, float[][] P, float iB, float jB)
+    public static void join(float[][] C, float[][] P, float iB, float jB)
 
     {
         // Iterating over elements of 2D matrix
