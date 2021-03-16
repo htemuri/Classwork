@@ -8,9 +8,8 @@ public class problem2 {
     public static void main(String[] args) {
         Random rnd = new Random();
 //         2^9 x 2^9 matrices
-        int power = 9;
+        int power = 12;
         StrassenMethod s = new StrassenMethod();
-        NaiveMethod n = new NaiveMethod();
         float[][] m = new float[(int) Math.pow(2, power)][(int) Math.pow(2, power)];
         float[][] m2 = new float[(int) Math.pow(2, power)][(int) Math.pow(2, power)];
         float[][] resultMatrix = new float[(int) Math.pow(2, power)][(int) Math.pow(2, power)];
@@ -37,7 +36,7 @@ public class problem2 {
 //        }
 
 //        resultMatrix = n.matrixMultiplicationFinal(m,m2);
-
+//
         // Strassen method
 
         resultMatrix = s.multiply(m, m2);

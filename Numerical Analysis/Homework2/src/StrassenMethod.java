@@ -9,11 +9,17 @@ public class StrassenMethod {
 
         // Base case
         // If there is only single element
-        if (n == 1)
+        if (n == Math.pow(2,6))
 
-            // Returnng the simple multiplication of
+            // Returning the simple multiplication of
             // two elements in matrices
-            R[0][0] = A[0][0] * B[0][0];
+        for (int i = 0; i < A.length; i++) {
+            for (int j = 0; j < A[i].length; j++) {
+                for (int l = 0; l < A[i].length; l++) {
+                    R[i][j] += A[i][l] * B[l][j];
+                }
+            }
+        }
 
             // Matix
         else {
