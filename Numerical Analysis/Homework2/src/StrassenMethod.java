@@ -1,3 +1,5 @@
+// StrassenMethod Algorithm provided by GeeksforGeeks
+
 public class StrassenMethod {
     public float[][] multiply(float[][] A, float[][] B) {
         // Order of matrix
