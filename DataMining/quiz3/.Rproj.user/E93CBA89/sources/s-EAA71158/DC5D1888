@@ -1,0 +1,28 @@
+{
+    "id": "DC5D1888",
+    "path": null,
+    "project_path": null,
+    "type": "object_explorer",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1616486954433.0,
+    "source_on_save": false,
+    "relative_order": 3,
+    "properties": {
+        "id": "d717a29963fc44a4bcc16f8ea79cc9be",
+        "name": "models",
+        "title": "models",
+        "language": "R",
+        "source_window_id": "",
+        "Source": "Source"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1090921693184,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1616486954433,
+    "read_only": false,
+    "read_only_alternatives": []
+}

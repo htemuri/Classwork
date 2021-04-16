@@ -1,0 +1,88 @@
+---
+title: "HW6"
+author: "Harris Temuri"
+date: "4/5/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(mlbench)
+library(caret)
+library(tidyverse)
+
+# import data
+data("PimaIndiansDiabetes2")
+df<- PimaIndiansDiabetes2
+
+# remove NA data points
+df <- na.omit(df)
+
+```
+
+## Problem 1
+
+The PimaIndiansDiabetes2 [in mlbench package] data is a built in R dataset containing 9 variables and 768 cases. Your task is to use all the other 8 variables to predict the binary dependent variable ‘diabetes’ telling us whether the subject is diabetic or not (factor with 2 levels: neg and pos). You will split the data into 80\% training and 20\% testing, using seed = 123.
+
+\textbf{\large{Solution}}
+
+(a) Please split the data into 80\% training and 20\% testing using seed =123.
+
+```{r}
+# Problem 1.1
+# Split data into 80% training and 20% testing
+
+set.seed(123)
+
+training <- df$diabetes %>%
+  createDataPartition(p=0.8, list = FALSE)
+
+trainData <- df[training, ]
+testData <- df[-training, ]
+
+```
+
+(b) Then you shall fit a logistic regression model with all the other 8 predictors using the training data.
+  
+```{r}
+# Problem 1.2
+# Logistic Regression Fit
+
+model <- glm(diabetes ~ ., data=trainData, family = binomial)
+summary(model)
+```
+
+(c) Please use this fitted model based on the training data to predict the response variable ‘diabetes’ (whether the subject is diabetic or not) for the testing data. Please generate the confusion matrix, and report: 
+
+```{r}
+# Predictions
+probabilities <- model %>% predict(testData, type="response")
+predictedClasses <- ifelse(probabilities > 0.5, "pos", "neg")
+
+# Prediction accuracy
+mean(predictedClasses == testData$diabetes)
+# Prediction error
+mean(predictedClasses != testData$diabetes)
+
+# Confusion matrix
+cm <- confusionMatrix(factor(predictedClasses), testData$diabetes, positive = "pos")
+cm
+```
+
+
+  (i) The overall accuracy; 
+```{r}
+cm$overall[1]
+```
+  
+  (ii) The sensitivity (that is, the probability a subject is predicted to be diabetic given that          he/she was in fact diabetic); 
+```{r}
+cm$byClass[1]
+```
+  
+  (iii) The specificity (that is, the probability a subject is predicted to be not diabetic given           that he/she was in fact not diabetic).
+```{r}
+cm$byClass[2]
+```
+
+  

@@ -1,0 +1,6 @@
+"0","training <- df$class %>%
+  createDataPartition(p=0.8, list = FALSE)
+"
+"2","Error in createDataPartition(., p = 0.8, list = FALSE) : 
+  y must have at least 2 data points
+"

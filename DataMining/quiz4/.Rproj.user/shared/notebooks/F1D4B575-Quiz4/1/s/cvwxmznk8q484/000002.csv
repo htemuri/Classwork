@@ -1,0 +1,6 @@
+"0","# Predictions
+probabilities <- model %>% predict(testData, type=""response"")
+"
+"2","Error in predict(., testData, type = ""response"") : 
+  object 'model' not found
+"

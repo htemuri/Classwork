@@ -1,0 +1,486 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Quiz 4},
+  pdfauthor={Harris Temuri},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{Quiz 4}
+\author{Harris Temuri}
+\date{4/8/2021}
+
+\begin{document}
+\maketitle
+
+\hypertarget{problem-1}{%
+\subsection{Problem 1}\label{problem-1}}
+
+The banknote.csv data (see attached) were extracted from images that
+were taken from genuine and forged banknote-like specimens. Yes, this is
+a Catch Me if You Can story. For digitization, an industrial camera
+usually used for print inspection was used. The final images have 400x
+400 pixels. Wavelet Transform tool were used to extract features from
+images. There are 1372 banknotes, and 5 variables:
+
+\textbf{\large{Solution}}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Please split the data into 80\% training and 20\% testing using seed
+  =123.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Problem 1.1}
+\CommentTok{\# Split data into 80\% training and 20\% testing}
+
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\NormalTok{training }\OtherTok{\textless{}{-}}\NormalTok{ df}\SpecialCharTok{$}\NormalTok{class }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{createDataPartition}\NormalTok{(}\AttributeTok{p=}\FloatTok{0.8}\NormalTok{, }\AttributeTok{list =} \ConstantTok{FALSE}\NormalTok{)}
+
+\NormalTok{trainData }\OtherTok{\textless{}{-}}\NormalTok{ df[training, ]}
+\NormalTok{testData }\OtherTok{\textless{}{-}}\NormalTok{ df[}\SpecialCharTok{{-}}\NormalTok{training, ]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Then you shall fit a logistic regression model with all the other 8
+  predictors using the training data.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Problem 1.2}
+\CommentTok{\# Logistic Regression Fit}
+
+\NormalTok{model }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(class }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }\AttributeTok{data=}\NormalTok{trainData, }\AttributeTok{family =}\NormalTok{ binomial)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = class ~ ., family = binomial, data = trainData)
+## 
+## Deviance Residuals: 
+##      Min        1Q    Median        3Q       Max  
+## -2.49913  -0.00005   0.00000   0.00000   1.44236  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(>|z|)    
+## (Intercept)  -8.5895     2.1863  -3.929 8.54e-05 ***
+## variance      9.3611     2.4703   3.789 0.000151 ***
+## skewness      4.6968     1.2673   3.706 0.000210 ***
+## curtosis      6.1372     1.6414   3.739 0.000185 ***
+## entropy       0.5193     0.4208   1.234 0.217156    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 1508.568  on 1097  degrees of freedom
+## Residual deviance:   33.991  on 1093  degrees of freedom
+## AIC: 43.991
+## 
+## Number of Fisher Scoring iterations: 13
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Please use this fitted model based on the training data to predict the
+  response variable `diabetes' (whether the subject is diabetic or not)
+  for the testing data. Please generate the confusion matrix, and
+  report:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Predictions}
+\NormalTok{probabilities }\OtherTok{\textless{}{-}}\NormalTok{ model }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{predict}\NormalTok{(testData, }\AttributeTok{type=}\StringTok{"response"}\NormalTok{)}
+\NormalTok{predictedClasses }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(probabilities }\SpecialCharTok{\textgreater{}} \FloatTok{0.5}\NormalTok{, }\StringTok{"1"}\NormalTok{, }\StringTok{"0"}\NormalTok{)}
+
+\CommentTok{\# Prediction accuracy}
+\FunctionTok{mean}\NormalTok{(predictedClasses }\SpecialCharTok{==}\NormalTok{ testData}\SpecialCharTok{$}\NormalTok{class)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9817518
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Prediction error}
+\FunctionTok{mean}\NormalTok{(predictedClasses }\SpecialCharTok{!=}\NormalTok{ testData}\SpecialCharTok{$}\NormalTok{class)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.01824818
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Confusion matrix}
+\NormalTok{cm }\OtherTok{\textless{}{-}} \FunctionTok{confusionMatrix}\NormalTok{(}\FunctionTok{factor}\NormalTok{(predictedClasses), }\FunctionTok{factor}\NormalTok{(testData}\SpecialCharTok{$}\NormalTok{class), }\AttributeTok{positive =} \StringTok{"1"}\NormalTok{)}
+\NormalTok{cm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction   0   1
+##          0 119   2
+##          1   3 150
+##                                          
+##                Accuracy : 0.9818         
+##                  95% CI : (0.9579, 0.994)
+##     No Information Rate : 0.5547         
+##     P-Value [Acc > NIR] : <2e-16         
+##                                          
+##                   Kappa : 0.963          
+##                                          
+##  Mcnemar's Test P-Value : 1              
+##                                          
+##             Sensitivity : 0.9868         
+##             Specificity : 0.9754         
+##          Pos Pred Value : 0.9804         
+##          Neg Pred Value : 0.9835         
+##              Prevalence : 0.5547         
+##          Detection Rate : 0.5474         
+##    Detection Prevalence : 0.5584         
+##       Balanced Accuracy : 0.9811         
+##                                          
+##        'Positive' Class : 1              
+## 
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{(\roman{enumi})}
+\tightlist
+\item
+  The overall accuracy;
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cm}\SpecialCharTok{$}\NormalTok{overall[}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  Accuracy 
+## 0.9817518
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{(\roman{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  The sensitivity (that is, the probability a subject is predicted to be
+  diabetic given that he/she was in fact diabetic);
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cm}\SpecialCharTok{$}\NormalTok{byClass[}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Sensitivity 
+##   0.9868421
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{(\roman{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  The specificity (that is, the probability a subject is predicted to be
+  not diabetic given that he/she was in fact not diabetic).
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cm}\SpecialCharTok{$}\NormalTok{byClass[}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Specificity 
+##   0.9754098
+\end{verbatim}
+
+\hypertarget{problem-2}{%
+\subsection{Problem 2}\label{problem-2}}
+
+Please find a model that best predicts whether the banknote is forged or
+genuine using the stepwise variable selection method and the BIC, based
+on the entire dataset. Please only use the original variables and do not
+include any other variables such as interactions. Please report the
+final model and the associated BIC value.
+
+\textbf{\large{Solution}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BIC }\OtherTok{\textless{}{-}} \FunctionTok{stepAIC}\NormalTok{(model, }\AttributeTok{k=}\FunctionTok{log}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(df)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Start:  AIC=70.11
+## class ~ variance + skewness + curtosis + entropy
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+##            Df Deviance    AIC
+## - entropy   1    35.59  64.49
+## <none>           33.99  70.11
+## - skewness  1   481.03 509.93
+## - curtosis  1   591.79 620.69
+## - variance  1   906.39 935.28
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Step:  AIC=64.49
+## class ~ variance + skewness + curtosis
+## 
+##            Df Deviance     AIC
+## <none>           35.59   64.49
+## - curtosis  1   594.64  616.31
+## - skewness  1   642.83  664.51
+## - variance  1  1115.29 1136.96
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BIC}\SpecialCharTok{$}\NormalTok{anova}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Stepwise Model Path 
+## Analysis of Deviance Table
+## 
+## Initial Model:
+## class ~ variance + skewness + curtosis + entropy
+## 
+## Final Model:
+## class ~ variance + skewness + curtosis
+## 
+## 
+##        Step Df Deviance Resid. Df Resid. Dev      AIC
+## 1                            1093   33.99056 70.11068
+## 2 - entropy  1 1.600442      1094   35.59100 64.48710
+\end{verbatim}
+
+Final Model with BIC = 64.49 is
+
+\[
+class = (-6.97) + 6.75(variance) + 3.50(skewness) + 4.44(curtosis)
+\]
+
+\hypertarget{problem-3}{%
+\subsection{Problem 3}\label{problem-3}}
+
+Please find a model that best predicts whether the banknote is forged or
+genuine using the best subset variable selection method and the BIC,
+based on the entire dataset. Please only use the original variables and
+do not include any other variables such as interactions. Please report
+the final model and the associated BIC value.
+
+\textbf{\large{Solution}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dummy }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(df)}
+\NormalTok{bestSubset }\OtherTok{\textless{}{-}}\NormalTok{ bestglm}\SpecialCharTok{::}\FunctionTok{bestglm}\NormalTok{(dummy, }\AttributeTok{IC=}\StringTok{"BIC"}\NormalTok{, }\AttributeTok{family=}\NormalTok{binomial)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Morgan-Tatar search since family is non-gaussian.
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bestSubset}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## BIC
+## BICq equivalent for q in (0, 0.870796809815784)
+## Best Model:
+##              Estimate Std. Error   z value     Pr(>|z|)
+## (Intercept) -6.884973  1.3838479 -4.975238 6.516756e-07
+## variance     6.783457  1.3949643  4.862818 1.157263e-06
+## skewness     3.506680  0.6932163  5.058564 4.224245e-07
+## curtosis     4.464192  0.9006030  4.956892 7.162970e-07
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bestSubset}\SpecialCharTok{$}\NormalTok{BestModel}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:  glm(formula = y ~ ., family = family, data = Xi, weights = weights)
+## 
+## Coefficients:
+## (Intercept)     variance     skewness     curtosis  
+##      -6.885        6.783        3.507        4.464  
+## 
+## Degrees of Freedom: 1371 Total (i.e. Null);  1368 Residual
+## Null Deviance:       1885 
+## Residual Deviance: 53.3  AIC: 61.3
+\end{verbatim}
+
+Final Model with BIC = 61.3 is
+
+\[
+class = (-6.885) + 6.783(variance) + 3.507(skewness) + 4.464(curtosis)
+\]
+
+\end{document}

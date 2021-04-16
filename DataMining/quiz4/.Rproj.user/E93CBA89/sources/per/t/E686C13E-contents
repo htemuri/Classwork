@@ -1,0 +1,140 @@
+---
+title: "Quiz 4"
+author: "Harris Temuri"
+date: "4/8/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readr)
+library(mlbench)
+library(caret)
+library(tidyverse)
+library(MASS)
+library(leaps) 
+library(bestglm)
+
+# import data
+banknote <- read_csv("banknote.csv")
+df<- banknote
+
+# remove NA data points
+df <- na.omit(df)
+
+df$class <- as.factor(df$class)
+
+
+```
+
+## Problem 1
+
+The banknote.csv data (see attached) were extracted from images that were taken from
+genuine and forged banknote-like specimens. Yes, this is a Catch Me if You Can
+story. For digitization, an industrial camera usually used for print inspection was
+used. The final images have 400x 400 pixels. Wavelet Transform tool were used to
+extract features from images. There are 1372 banknotes, and 5 variables:
+
+\textbf{\large{Solution}}
+
+(a) Please split the data into 80\% training and 20\% testing using seed =123.
+
+```{r}
+# Problem 1.1
+# Split data into 80% training and 20% testing
+
+set.seed(123)
+
+training <- df$class %>%
+  createDataPartition(p=0.8, list = FALSE)
+
+trainData <- df[training, ]
+testData <- df[-training, ]
+
+```
+
+(b) Then you shall fit a logistic regression model with all the other 8 predictors using the training data.
+  
+```{r}
+# Problem 1.2
+# Logistic Regression Fit
+
+model <- glm(class ~ ., data=trainData, family = binomial)
+summary(model)
+```
+
+(c) Please use this fitted model based on the training data to predict the response variable ‘diabetes’ (whether the subject is diabetic or not) for the testing data. Please generate the confusion matrix, and report: 
+
+```{r}
+# Predictions
+probabilities <- model %>% predict(testData, type="response")
+predictedClasses <- ifelse(probabilities > 0.5, "1", "0")
+
+# Prediction accuracy
+mean(predictedClasses == testData$class)
+# Prediction error
+mean(predictedClasses != testData$class)
+
+# Confusion matrix
+cm <- confusionMatrix(factor(predictedClasses), factor(testData$class), positive = "1")
+cm
+```
+
+
+  (i) The overall accuracy; 
+```{r}
+cm$overall[1]
+```
+  
+  (ii) The sensitivity (that is, the probability a subject is predicted to be diabetic given that          he/she was in fact diabetic); 
+```{r}
+cm$byClass[1]
+```
+  
+  (iii) The specificity (that is, the probability a subject is predicted to be not diabetic given           that he/she was in fact not diabetic).
+```{r}
+cm$byClass[2]
+```
+
+
+## Problem 2
+
+Please find a model that best predicts whether the banknote is forged or genuine using the
+stepwise variable selection method and the BIC, based on the entire dataset. Please only use
+the original variables and do not include any other variables such as interactions. Please report
+the final model and the associated BIC value.
+
+\textbf{\large{Solution}}
+
+```{r}
+BIC <- stepAIC(model, k=log(nrow(df)))
+BIC$anova
+```
+
+Final Model with BIC = 64.49 is
+
+\[
+class = (-6.97) + 6.75(variance) + 3.50(skewness) + 4.44(curtosis)
+\]
+
+## Problem 3
+
+Please find a model that best predicts whether the banknote is forged or genuine using the best
+subset variable selection method and the BIC, based on the entire dataset. Please only use the
+original variables and do not include any other variables such as interactions. Please report the
+final model and the associated BIC value.
+
+\textbf{\large{Solution}}
+
+```{r}
+dummy <- data.frame(df)
+bestSubset <- bestglm::bestglm(dummy, IC="BIC", family=binomial)
+bestSubset
+bestSubset$BestModel
+```
+
+Final Model with BIC = 61.3 is
+
+\[
+class = (-6.885) + 6.783(variance) + 3.507(skewness) + 4.464(curtosis)
+\]

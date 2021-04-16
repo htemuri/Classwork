@@ -1,0 +1,332 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={HW6},
+  pdfauthor={Harris Temuri},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{HW6}
+\author{Harris Temuri}
+\date{4/5/2021}
+
+\begin{document}
+\maketitle
+
+\hypertarget{problem-1}{%
+\subsection{Problem 1}\label{problem-1}}
+
+The PimaIndiansDiabetes2 {[}in mlbench package{]} data is a built in R
+dataset containing 9 variables and 768 cases. Your task is to use all
+the other 8 variables to predict the binary dependent variable
+`diabetes' telling us whether the subject is diabetic or not (factor
+with 2 levels: neg and pos). You will split the data into 80\% training
+and 20\% testing, using seed = 123.
+
+\textbf{\large{Solution}}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Please split the data into 80\% training and 20\% testing using seed
+  =123.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Problem 1.1}
+\CommentTok{\# Split data into 80\% training and 20\% testing}
+
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\NormalTok{training }\OtherTok{\textless{}{-}}\NormalTok{ df}\SpecialCharTok{$}\NormalTok{diabetes }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{createDataPartition}\NormalTok{(}\AttributeTok{p=}\FloatTok{0.8}\NormalTok{, }\AttributeTok{list =} \ConstantTok{FALSE}\NormalTok{)}
+
+\NormalTok{trainData }\OtherTok{\textless{}{-}}\NormalTok{ df[training, ]}
+\NormalTok{testData }\OtherTok{\textless{}{-}}\NormalTok{ df[}\SpecialCharTok{{-}}\NormalTok{training, ]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Then you shall fit a logistic regression model with all the other 8
+  predictors using the training data.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Problem 1.2}
+\CommentTok{\# Logistic Regression Fit}
+
+\NormalTok{model }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(diabetes }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }\AttributeTok{data=}\NormalTok{trainData, }\AttributeTok{family =}\NormalTok{ binomial)}
+\FunctionTok{summary}\NormalTok{(model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = diabetes ~ ., family = binomial, data = trainData)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.5832  -0.6544  -0.3292   0.6248   2.5968  
+## 
+## Coefficients:
+##               Estimate Std. Error z value Pr(>|z|)    
+## (Intercept) -1.053e+01  1.440e+00  -7.317 2.54e-13 ***
+## pregnant     1.005e-01  6.127e-02   1.640  0.10092    
+## glucose      3.710e-02  6.486e-03   5.719 1.07e-08 ***
+## pressure    -3.876e-04  1.383e-02  -0.028  0.97764    
+## triceps      1.418e-02  1.998e-02   0.710  0.47800    
+## insulin      5.940e-04  1.508e-03   0.394  0.69371    
+## mass         7.997e-02  3.180e-02   2.515  0.01190 *  
+## pedigree     1.329e+00  4.823e-01   2.756  0.00585 ** 
+## age          2.718e-02  2.020e-02   1.346  0.17840    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 398.80  on 313  degrees of freedom
+## Residual deviance: 267.18  on 305  degrees of freedom
+## AIC: 285.18
+## 
+## Number of Fisher Scoring iterations: 5
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Please use this fitted model based on the training data to predict the
+  response variable `diabetes' (whether the subject is diabetic or not)
+  for the testing data. Please generate the confusion matrix, and
+  report:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Predictions}
+\NormalTok{probabilities }\OtherTok{\textless{}{-}}\NormalTok{ model }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{predict}\NormalTok{(testData, }\AttributeTok{type=}\StringTok{"response"}\NormalTok{)}
+\NormalTok{predictedClasses }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(probabilities }\SpecialCharTok{\textgreater{}} \FloatTok{0.5}\NormalTok{, }\StringTok{"pos"}\NormalTok{, }\StringTok{"neg"}\NormalTok{)}
+
+\CommentTok{\# Prediction accuracy}
+\FunctionTok{mean}\NormalTok{(predictedClasses }\SpecialCharTok{==}\NormalTok{ testData}\SpecialCharTok{$}\NormalTok{diabetes)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.7564103
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Prediction error}
+\FunctionTok{mean}\NormalTok{(predictedClasses }\SpecialCharTok{!=}\NormalTok{ testData}\SpecialCharTok{$}\NormalTok{diabetes)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.2435897
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Confusion matrix}
+\NormalTok{cm }\OtherTok{\textless{}{-}} \FunctionTok{confusionMatrix}\NormalTok{(}\FunctionTok{factor}\NormalTok{(predictedClasses), testData}\SpecialCharTok{$}\NormalTok{diabetes, }\AttributeTok{positive =} \StringTok{"pos"}\NormalTok{)}
+\NormalTok{cm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction neg pos
+##        neg  44  11
+##        pos   8  15
+##                                          
+##                Accuracy : 0.7564         
+##                  95% CI : (0.646, 0.8465)
+##     No Information Rate : 0.6667         
+##     P-Value [Acc > NIR] : 0.05651        
+##                                          
+##                   Kappa : 0.4356         
+##                                          
+##  Mcnemar's Test P-Value : 0.64636        
+##                                          
+##             Sensitivity : 0.5769         
+##             Specificity : 0.8462         
+##          Pos Pred Value : 0.6522         
+##          Neg Pred Value : 0.8000         
+##              Prevalence : 0.3333         
+##          Detection Rate : 0.1923         
+##    Detection Prevalence : 0.2949         
+##       Balanced Accuracy : 0.7115         
+##                                          
+##        'Positive' Class : pos            
+## 
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{(\roman{enumi})}
+\tightlist
+\item
+  The overall accuracy;
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cm}\SpecialCharTok{$}\NormalTok{overall[}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  Accuracy 
+## 0.7564103
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{(\roman{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  The sensitivity (that is, the probability a subject is predicted to be
+  diabetic given that he/she was in fact diabetic);
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cm}\SpecialCharTok{$}\NormalTok{byClass[}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Sensitivity 
+##   0.5769231
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{(\roman{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  The specificity (that is, the probability a subject is predicted to be
+  not diabetic given that he/she was in fact not diabetic).
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cm}\SpecialCharTok{$}\NormalTok{byClass[}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Specificity 
+##   0.8461538
+\end{verbatim}
+
+\end{document}

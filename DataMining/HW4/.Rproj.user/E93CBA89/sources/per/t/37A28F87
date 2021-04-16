@@ -1,0 +1,33 @@
+{
+    "id": "37A28F87",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1615255124318.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "expression": "crop_data",
+        "caption": "crop_data",
+        "totalObservations": "96",
+        "displayedObservations": "96",
+        "variables": "4",
+        "cacheKey": "286159C1",
+        "object": "crop_data",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=crop_data&cache_key=286159C1&max_cols=50",
+        "preview": "0",
+        "Source": "Source"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 0,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1615255124318,
+    "read_only": false,
+    "read_only_alternatives": []
+}
